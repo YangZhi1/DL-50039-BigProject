@@ -19,10 +19,9 @@ def get_graph(node_index1, node_index2):
     #print(device)
     
     scammer_select = (int(node_index1), int(node_index2))
-    try:
-      model_path = "model_final.pt"
-    except FileNotFoundError:
-      model_path = "models/model_final.pt" 
+
+    model_path = "model_final.pt"
+    model_path2 = "models/model_final.pt" 
     X = []
     distances = dict(nx.all_pairs_shortest_path_length(G))
     for node in G.nodes:
@@ -49,7 +48,10 @@ def get_graph(node_index1, node_index2):
 
     # load the model
     model = graph.Net(A, input_size, 10, 2, device)
-    model.load_state_dict(torch.load(model_path))
+    try:
+      model.load_state_dict(torch.load(model_path))
+    except FileNotFoundError:
+      model.load_state_dict(torch.load(model_path2))
     model.eval()
     
     # run this through our model

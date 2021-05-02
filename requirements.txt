@@ -1,0 +1,6 @@
+dimcli
+matplotlib
+networkx
+pyvis
+scikit-learn
+torch

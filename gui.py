@@ -5,7 +5,7 @@ import deployment
 import os
 
 def get_nodes():
-    filename = '3980_edited.feat'
+    filename = 'data/3980_edited.feat'
     all_nodes = []
     with open(filename, 'r') as f:
         cur_line = f.readline().split()

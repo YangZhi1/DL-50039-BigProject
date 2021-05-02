@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 500px;
+            height: 500px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "#51F59D", "id": 3981, "label": 3981, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 3982, "label": 3982, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 3983, "label": 3983, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 3985, "label": 3985, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 3986, "label": 3986, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 3988, "label": 3988, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 3989, "label": 3989, "shape": "dot", "size": 8}, {"color": "#51F59D", "id": 3991, "label": 3991, "shape": "dot", "size": 8}, {"color": "#51F59D", "id": 3992, "label": 3992, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 3993, "label": 3993, "shape": "dot", "size": 8}, {"color": "#51F59D", "id": 3994, "label": 3994, "shape": "dot", "size": 8}, {"color": "#000000", "id": 3995, "label": 3995, "shape": "dot", "size": 8}, {"color": "#51F59D", "id": 594, "label": 594, "shape": "dot", "size": 8}, {"color": "#000000", "id": 3996, "label": 3996, "shape": "dot", "size": 8}, {"color": "#51F59D", "id": 3997, "label": 3997, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 3998, "label": 3998, "shape": "dot", "size": 8}, {"color": "#51F59D", "id": 3999, "label": 3999, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 4000, "label": 4000, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 4002, "label": 4002, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 4003, "label": 4003, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 4004, "label": 4004, "shape": "dot", "size": 8}, {"color": "#51F59D", "id": 4005, "label": 4005, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 4006, "label": 4006, "shape": "dot", "size": 8}, {"color": "#51F59D", "id": 4009, "label": 4009, "shape": "dot", "size": 8}, {"color": "#51F59D", "id": 4011, "label": 4011, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 4013, "label": 4013, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 4014, "label": 4014, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 4017, "label": 4017, "shape": "dot", "size": 8}, {"color": "#51F59D", "id": 4018, "label": 4018, "shape": "dot", "size": 8}, {"color": "#51F59D", "id": 4019, "label": 4019, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 4020, "label": 4020, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 4021, "label": 4021, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 4023, "label": 4023, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 4026, "label": 4026, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 4027, "label": 4027, "shape": "dot", "size": 8}, {"color": "#51F59D", "id": 4028, "label": 4028, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 4030, "label": 4030, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 4031, "label": 4031, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 4032, "label": 4032, "shape": "dot", "size": 8}, {"color": "#51F59D", "id": 4033, "label": 4033, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 4034, "label": 4034, "shape": "dot", "size": 8}, {"color": "#51F59D", "id": 4036, "label": 4036, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 4037, "label": 4037, "shape": "dot", "size": 8}, {"color": "#FFD700", "id": 4038, "label": 4038, "shape": "dot", "size": 8}]);
+        edges = new vis.DataSet([{"from": 3981, "to": 3998}, {"from": 3981, "to": 4009}, {"from": 3981, "to": 4023}, {"from": 3981, "to": 3997}, {"from": 3981, "to": 4018}, {"from": 3981, "to": 3994}, {"from": 3981, "to": 4019}, {"from": 3982, "to": 3998}, {"from": 3982, "to": 3986}, {"from": 3982, "to": 4014}, {"from": 3982, "to": 4009}, {"from": 3982, "to": 4021}, {"from": 3982, "to": 4037}, {"from": 3982, "to": 4023}, {"from": 3982, "to": 4003}, {"from": 3982, "to": 4030}, {"from": 3982, "to": 3994}, {"from": 3982, "to": 3997}, {"from": 3982, "to": 3988}, {"from": 3982, "to": 4026}, {"from": 3983, "to": 4017}, {"from": 3985, "to": 4014}, {"from": 3985, "to": 3993}, {"from": 3985, "to": 3995}, {"from": 3985, "to": 3988}, {"from": 3985, "to": 4004}, {"from": 3986, "to": 4030}, {"from": 3986, "to": 4014}, {"from": 3986, "to": 4017}, {"from": 3986, "to": 4033}, {"from": 3986, "to": 4021}, {"from": 3986, "to": 4000}, {"from": 3986, "to": 4026}, {"from": 3988, "to": 4021}, {"from": 3988, "to": 3995}, {"from": 3988, "to": 4030}, {"from": 3988, "to": 3993}, {"from": 3989, "to": 3991}, {"from": 3989, "to": 4038}, {"from": 3989, "to": 594}, {"from": 3989, "to": 4011}, {"from": 3989, "to": 4013}, {"from": 3991, "to": 4031}, {"from": 3992, "to": 4017}, {"from": 3992, "to": 4000}, {"from": 3993, "to": 3995}, {"from": 3993, "to": 4030}, {"from": 3993, "to": 4004}, {"from": 3994, "to": 3998}, {"from": 3994, "to": 3997}, {"from": 3994, "to": 4019}, {"from": 3994, "to": 4018}, {"from": 3994, "to": 4030}, {"from": 3994, "to": 4009}, {"from": 3994, "to": 3996}, {"from": 3994, "to": 4023}, {"from": 3995, "to": 4004}, {"from": 3995, "to": 4000}, {"from": 3995, "to": 4014}, {"from": 3995, "to": 4026}, {"from": 3995, "to": 4023}, {"from": 594, "to": 4011}, {"from": 594, "to": 4031}, {"from": 3996, "to": 4028}, {"from": 3996, "to": 4002}, {"from": 3997, "to": 4018}, {"from": 3997, "to": 4019}, {"from": 3997, "to": 4023}, {"from": 3997, "to": 4030}, {"from": 3997, "to": 4021}, {"from": 3997, "to": 4009}, {"from": 3997, "to": 3998}, {"from": 3998, "to": 4021}, {"from": 3998, "to": 3999}, {"from": 3998, "to": 4019}, {"from": 3998, "to": 4014}, {"from": 3998, "to": 4009}, {"from": 3998, "to": 4018}, {"from": 3998, "to": 4002}, {"from": 3998, "to": 4005}, {"from": 3998, "to": 4023}, {"from": 3999, "to": 4005}, {"from": 3999, "to": 4036}, {"from": 4000, "to": 4026}, {"from": 4000, "to": 4021}, {"from": 4000, "to": 4030}, {"from": 4000, "to": 4017}, {"from": 4000, "to": 4033}, {"from": 4002, "to": 4031}, {"from": 4002, "to": 4027}, {"from": 4002, "to": 4020}, {"from": 4002, "to": 4023}, {"from": 4003, "to": 4023}, {"from": 4003, "to": 4009}, {"from": 4003, "to": 4030}, {"from": 4004, "to": 4013}, {"from": 4004, "to": 4023}, {"from": 4004, "to": 4020}, {"from": 4004, "to": 4030}, {"from": 4004, "to": 4031}, {"from": 4004, "to": 4038}, {"from": 4006, "to": 4027}, {"from": 4009, "to": 4030}, {"from": 4009, "to": 4023}, {"from": 4009, "to": 4019}, {"from": 4011, "to": 4031}, {"from": 4013, "to": 4023}, {"from": 4013, "to": 4038}, {"from": 4013, "to": 4031}, {"from": 4014, "to": 4038}, {"from": 4014, "to": 4030}, {"from": 4014, "to": 4023}, {"from": 4014, "to": 4021}, {"from": 4014, "to": 4037}, {"from": 4014, "to": 4017}, {"from": 4017, "to": 4030}, {"from": 4017, "to": 4026}, {"from": 4017, "to": 4021}, {"from": 4018, "to": 4030}, {"from": 4018, "to": 4023}, {"from": 4019, "to": 4026}, {"from": 4019, "to": 4030}, {"from": 4020, "to": 4037}, {"from": 4020, "to": 4027}, {"from": 4020, "to": 4031}, {"from": 4020, "to": 4030}, {"from": 4020, "to": 4038}, {"from": 4021, "to": 4030}, {"from": 4021, "to": 4026}, {"from": 4023, "to": 4031}, {"from": 4023, "to": 4030}, {"from": 4023, "to": 4034}, {"from": 4023, "to": 4038}, {"from": 4026, "to": 4030}, {"from": 4027, "to": 4032}, {"from": 4027, "to": 4038}, {"from": 4027, "to": 4031}, {"from": 4031, "to": 4038}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
